@@ -1,0 +1,76 @@
+DEVELOPMENT LOG:
+
+PreAlpha 0.0.5 - June 12th, 2016: Small, complicated beginnings
+    + Raytraced square walls with texture
+    + Floor and ceiling tiles with texture
+    + Distance fog/shading
+    + Smooth movement/acceleration
+    + Mouse look horizontally and vertically
+    + Loading level from file (simply a .PNG telling if a block is there)
+    + Wall collision detection
+
+PreAlpha 0.0.6 - June 14th, 2016: A perfect Raycaster
+    + Fixed FOV rendering, adjustable
+    * Wall and floor now exactly align perfectly
+
+PreAlpha 0.0.7 - June 18th, 2016: Sprites!!!
+    + Added Sprites
+    + Slightly shade walls on side to look cooler
+    * Log with videos now saved on Google Drive
+
+PreAlpha 0.0.8 - June 26th, 2016: Textures!!!
+    + Adjustable ceiling height, the blocks stick to this height for now (wrapping the texture around)
+    + Adjustable camera height (within floor/ceiling limit)
+        * Head bob is now rotational and vertical
+    + Sky texture in background now can replace ceiling
+    + Map Editor: Gemakt v0.1
+        + Save/Load map files with textures
+        + Assign textures to floor, wall, and ceiling
+    + Loads maps with wall and floor textures
+
+PreAlpha 0.0.9 - July 4th, 2016: Verticallity Technicallity
+    * Renderer Refactoring
+        * Fixed Sprite height scaling
+        * DrawFloor no longer has its own function, to reduce overdraw, the floor
+            is simply drawn in vertical strips after a wall; using a calculated
+            depth look-up table for that frame
+        * Sky Texture now draws until the start of the wall for that vertical line
+    + On texture-less ground, draws an abyss-hole down
+        ~ Looks very nice, but still needs work as non-darkened sides have a darkened stripe
+    + Blocks (walls) may have different heights, taller visible behind shorter ones
+        * Sprites layer based on a 2D depth-buffer now
+    * Fixed Sky Texture on different resolutions
+
+PreAlpha 0.1.0 - :
+    (Sloped walls)
+
+
+TODO:
+
+[X] Fix goddamn rendering and fov
+[X] Sprites
+[~] Crouching? Figure out verticality, even though this is kind of on the further TODO
+    * So turns out looking down/up on top of many blocks doesn't work because
+        the wall drawing algorithm stops at the nearest block. I don't really
+        want to extend the code to allow some 2-d depth buffer or whatever.
+    * Vertical motion, again within floor/ceiling limit
+[X] Wall/Floor textures
+[X] Map Editor support
+    [X] Instead of .PNG, encoded map data
+    [X] Maps will select necessary textures to be loaded (texture folder)
+    [ ] Will give spawn location of player, direction, etc.
+[X] Draw infinite vertical abyss in absent floor (using wall texture, perhaps)
+[ ] Diagonal walls
+[ ] Text Drawing
+[ ] Pause Menu (Menus in general, separate from game process)
+
+
+Further TODO:
+
+[X] Background (sky etc.)
+[ ] NPCs (walking around/turning/colliding etc.)
+[ ] Flat (sliding) gates/doors
+[ ] Elevation?
+    [~] Higher/lower block/walls // Ended up just having some walls taller than others
+    [!] Partial floor/ceiling drawing // I don't think this will be a feature
+    - Slopes?? (or stairs)
